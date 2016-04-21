@@ -1,4 +1,9 @@
 {
     "presets": ["es2015"],
-    "plugins": ["transform-function-bind", "transform-es2015-modules-commonjs"]
+    "plugins": [
+      "transform-function-bind",
+      "transform-es2015-modules-commonjs",
+      "transform-class-properties",
+      "transform-react-jsx"
+    ]
 }
