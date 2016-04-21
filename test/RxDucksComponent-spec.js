@@ -49,9 +49,12 @@ describe('RxDucksComponent', () => {
 
     let comp = new MyComponent();
 
+    expect(comp._rxducks_sub).to.be.a('undefined');
     expect(comp._rxducks).to.be.a('object');
 
     comp.componentDidMount();
+    expect(comp._rxducks_sub.unsubscribe).to.be.a('function');
+    expect(comp._rxducks_sub.isUnsubscribed).to.equal(false);
 
     comp.clickMe();
     comp.clickMe();
@@ -59,5 +62,7 @@ describe('RxDucksComponent', () => {
     expect(reducedActions).to.deep.equal([{ type: '@@redux/INIT' }, { type: 'CLICKED', index: 0 }, { type: 'CLICKED', index: 1 }]);
 
     comp.componentDidUnmount();
+
+    expect(comp._rxducks_sub.isUnsubscribed).to.equal(true);
   });
 });
